@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_favorite"
+    app:startDestination="@id/favoriteFragment">
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.codefresher.allinone.fragment.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailFavoriteFragment"
+            app:destination="@id/detailFavoriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFavoriteFragment"
+        android:name="com.codefresher.allinone.fragment.DetailFavoriteFragment"
+        android:label="fragment_detail_favorite"
+        tools:layout="@layout/fragment_detail_favorite" />
+</navigation>

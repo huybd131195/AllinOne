@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_create"
+    app:startDestination="@id/createFragment">
+
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.codefresher.allinone.fragment.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" >
+        <action
+            android:id="@+id/action_createFragment_to_detailCreateFragment"
+            app:destination="@id/detailCreateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCreateFragment"
+        android:name="com.codefresher.allinone.fragment.DetailCreateFragment"
+        android:label="fragment_detail_create"
+        tools:layout="@layout/fragment_detail_create" />
+</navigation>
