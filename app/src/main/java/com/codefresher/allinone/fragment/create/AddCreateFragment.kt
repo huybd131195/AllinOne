@@ -11,8 +11,7 @@ import com.codefresher.allinone.R
 import com.codefresher.allinone.databinding.FragmentAddCreateBinding
 import com.codefresher.allinone.databinding.FragmentCreateBinding
 import com.codefresher.allinone.model.Users
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 class AddCreateFragment : Fragment() {
@@ -20,7 +19,7 @@ class AddCreateFragment : Fragment() {
     private var _binding: FragmentAddCreateBinding? = null
     private val binding get() = _binding!!
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    val myReference: DatabaseReference = database.reference.child("MyUsers")
+    private val myReference: DatabaseReference = database.reference.child("MyUsers")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +38,7 @@ class AddCreateFragment : Fragment() {
         }
 
     }
+
     private fun addUserToDatabase() {
         val name: String = binding.edtName.text.toString()
         val age: Int = binding.edtAge.text.toString().toInt()
@@ -67,6 +67,8 @@ class AddCreateFragment : Fragment() {
             }
         }
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
