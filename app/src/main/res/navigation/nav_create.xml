@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_createFragment_to_detailCreateFragment"
             app:destination="@id/detailCreateFragment" />
+        <action
+            android:id="@+id/action_createFragment_to_addCreateFragment"
+            app:destination="@id/addCreateFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailCreateFragment"
         android:name="com.codefresher.allinone.fragment.create.DetailCreateFragment"
         android:label="fragment_detail_create"
         tools:layout="@layout/fragment_detail_create" />
+    <fragment
+        android:id="@+id/addCreateFragment"
+        android:name="com.codefresher.allinone.fragment.create.AddCreateFragment"
+        android:label="fragment_add_create"
+        tools:layout="@layout/fragment_add_create" />
 </navigation>
