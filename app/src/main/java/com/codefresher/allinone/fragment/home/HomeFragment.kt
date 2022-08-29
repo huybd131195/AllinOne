@@ -1,4 +1,4 @@
-package com.codefresher.allinone.fragment
+package com.codefresher.allinone.fragment.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +15,7 @@ import com.codefresher.allinone.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -26,12 +27,6 @@ class HomeFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     override fun onDestroy() {

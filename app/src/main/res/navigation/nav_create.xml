@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/createFragment"
-        android:name="com.codefresher.allinone.fragment.CreateFragment"
+        android:name="com.codefresher.allinone.fragment.create.CreateFragment"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailCreateFragment"
-        android:name="com.codefresher.allinone.fragment.DetailCreateFragment"
+        android:name="com.codefresher.allinone.fragment.create.DetailCreateFragment"
         android:label="fragment_detail_create"
         tools:layout="@layout/fragment_detail_create" />
 </navigation>

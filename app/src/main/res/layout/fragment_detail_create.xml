@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.DetailCreateFragment">
+    android:layout_margin="10dp"
+    android:gravity="center_horizontal"
+    tools:context=".fragment.create.DetailCreateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:hint="Enter Name"
+        android:id="@+id/edtName"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp" />
 
-</FrameLayout>
+    <EditText
+        android:hint="Enter Age"
+        android:id="@+id/edtAge"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:hint="Enter Mail"
+        android:id="@+id/edtEmail"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:text="add user"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
