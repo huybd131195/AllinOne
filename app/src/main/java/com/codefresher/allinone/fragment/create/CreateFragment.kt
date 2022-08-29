@@ -21,7 +21,7 @@ class CreateFragment : Fragment() {
 
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
     private val myReference: DatabaseReference = database.reference.child("MyUsers")
-    val userList = ArrayList<Users>()
+    private val userList = ArrayList<Users>()
     lateinit var usersAdapter: UsersAdapter
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class CreateFragment : Fragment() {
         return binding.root
     }
 
-    fun retrieveDataFromDatabase() {
+        private fun retrieveDataFromDatabase() {
         myReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
@@ -53,16 +53,20 @@ class CreateFragment : Fragment() {
                         userList.add(user)
                     }
 
-                    usersAdapter = UsersAdapter(requireContext(),userList)
+                    usersAdapter = UsersAdapter(requireContext(),userList,){
+
+                        findNavController().navigate(R.id.action_createFragment_to_detailCreateFragment)
+                    }
                     binding.recyclerView.adapter = usersAdapter
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
         })
+
     }
     override fun onDestroy() {
         super.onDestroy()

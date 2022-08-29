@@ -22,7 +22,24 @@ class DetailCreateFragment : Fragment() {
 
 
 
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getAndSetData()
+    }
+    private fun getAndSetData(){
+        val name = arguments?.getString("name")
+        val age = arguments?.getString("age")?.toInt()
+        val email = arguments?.getString("email")
+
+        binding.edtAge.setText(name)
+        if (age != null) {
+            binding.edtAge.setText(age)
+        }
+        binding.edtAge.setText(email)
     }
     override fun onDestroy() {
         super.onDestroy()
