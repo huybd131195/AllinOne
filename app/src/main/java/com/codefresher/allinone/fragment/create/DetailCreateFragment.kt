@@ -20,26 +20,22 @@ class DetailCreateFragment : Fragment() {
     ): View {
         _binding = FragmentDetailCreateBinding.inflate(inflater, container, false)
 
+        getAndSetData()
 
 
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getAndSetData()
-    }
+
     private fun getAndSetData(){
         val name = arguments?.getString("name")
-        val age = arguments?.getString("age")?.toInt()
+        val age = arguments?.getString("age")
         val email = arguments?.getString("email")
 
-        binding.edtAge.setText(name)
-        if (age != null) {
-            binding.edtAge.setText(age)
-        }
-        binding.edtAge.setText(email)
+        binding.edtName.setText(name)
+        binding.edtAge.setText(age)
+        binding.edtEmail.setText(email)
     }
     override fun onDestroy() {
         super.onDestroy()

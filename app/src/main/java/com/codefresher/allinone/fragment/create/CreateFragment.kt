@@ -53,10 +53,7 @@ class CreateFragment : Fragment() {
                         userList.add(user)
                     }
 
-                    usersAdapter = UsersAdapter(requireContext(),userList,){
-
-                        findNavController().navigate(R.id.action_createFragment_to_detailCreateFragment)
-                    }
+                    usersAdapter = UsersAdapter(requireContext(),userList)
                     binding.recyclerView.adapter = usersAdapter
                 }
             }

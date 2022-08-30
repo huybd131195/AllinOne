@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.codefresher.allinone.R
 import com.codefresher.allinone.databinding.CreateItemBinding
@@ -31,7 +32,7 @@ class UsersAdapter(
             tvName.text = users.userName
             val tvAge = adapterBinding.tvAge
             tvAge.text = users.userAge.toString()
-            val tvEmail = adapterBinding.tvName
+            val tvEmail = adapterBinding.tvEmail
             tvEmail.text = users.userEmail
 
 
@@ -45,7 +46,6 @@ class UsersAdapter(
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.binItem(userList[position])
-
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(userList[position])
             val tvN: TextView? = it.findViewById(R.id.tvName)
@@ -57,21 +57,18 @@ class UsersAdapter(
             val bundleEmail = tvE?.text.toString()
             val iD = userList[position].userId
 
-//            val bundle = Bundle().apply {
-//                putString("name",bundleName)
-//                putString("age",bundleAge)
-//                putString("email",bundleEmail)
-//                putString("id",iD)
-//            }
-            val bundle = Bundle()
-            bundle.putString("name", bundleName)
-            bundle.putString("age", bundleAge)
-            bundle.putString("email", bundleEmail)
-            bundle.putString("id", iD)
-            val fragment = DetailCreateFragment()
-            fragment.arguments = bundle
+            val bundle = Bundle().apply {
+                putString("name",bundleName)
+                putString("age",bundleAge)
+                putString("email",bundleEmail)
+                putString("id",iD)
+            }
+
+
+            Navigation.findNavController(view = it).navigate(R.id.action_createFragment_to_detailCreateFragment,bundle)
         }
     }
+
 
 
     override fun getItemCount(): Int = userList.size
