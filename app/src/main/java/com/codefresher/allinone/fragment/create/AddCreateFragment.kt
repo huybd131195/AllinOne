@@ -41,7 +41,7 @@ class AddCreateFragment : Fragment() {
 
     private fun addUserToDatabase() {
         val name: String = binding.edtName.text.toString()
-        val age: Int = binding.edtAge.text.toString().toInt()
+        val age: String = binding.edtAge.text.toString()
         val email: String = binding.edtEmail.text.toString()
 
         val id: String = myReference.push().key.toString()

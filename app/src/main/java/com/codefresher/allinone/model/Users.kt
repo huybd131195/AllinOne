@@ -6,6 +6,6 @@ import java.io.Serializable
 data class Users(
     val userId: String= "",
     val userName: String = "",
-    val userAge: Int = 0,
+    val userAge: String ="",
     val userEmail: String = ""
 )

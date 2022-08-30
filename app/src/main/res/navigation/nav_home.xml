@@ -11,10 +11,10 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:enterAnim="@anim/enter_anim"
+            app:popEnterAnim="@anim/pop_enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popExitAnim="@anim/pop_exit_anim"
             android:id="@+id/action_homeFragment_to_detailHomeFragment"
             app:destination="@id/detailHomeFragment" />
     </fragment>

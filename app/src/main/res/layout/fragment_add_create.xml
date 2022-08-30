@@ -19,7 +19,7 @@
             android:hint="Enter Name" />
 
         <EditText
-
+            android:inputType="phone"
             android:layout_margin="10dp"
             android:id="@+id/edtAge"
             android:layout_width="300dp"

@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+
 import com.codefresher.allinone.R
 import com.codefresher.allinone.adapter.UsersAdapter
 import com.codefresher.allinone.databinding.FragmentCreateBinding
@@ -38,13 +37,14 @@ class CreateFragment : Fragment() {
         return binding.root
     }
 
-        private fun retrieveDataFromDatabase() {
+    private fun retrieveDataFromDatabase() {
         myReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
-                for (eachUser in snapshot.children){
-                    val user =    eachUser.getValue(Users::class.java)
-                    if (user != null){
+                for (eachUser in snapshot.children) {
+                    val user = eachUser.getValue(Users::class.java)
+
+                    if (user != null) {
                         println("user Id: ${user.userId}")
                         println("userName: ${user.userName}")
                         println("userAge: ${user.userAge}")
@@ -53,7 +53,7 @@ class CreateFragment : Fragment() {
                         userList.add(user)
                     }
 
-                    usersAdapter = UsersAdapter(requireContext(),userList)
+                    usersAdapter = UsersAdapter(requireContext(), userList)
                     binding.recyclerView.adapter = usersAdapter
                 }
             }
@@ -65,6 +65,7 @@ class CreateFragment : Fragment() {
         })
 
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

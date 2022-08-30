@@ -16,6 +16,7 @@
         android:layout_marginTop="10dp" />
 
     <EditText
+        android:inputType="phone"
         android:hint="Enter Age"
         android:id="@+id/edtAge"
         android:layout_width="300dp"
