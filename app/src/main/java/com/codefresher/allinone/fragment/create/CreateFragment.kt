@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 
 import com.codefresher.allinone.R
 import com.codefresher.allinone.adapter.UsersAdapter
@@ -32,11 +34,30 @@ class CreateFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_createFragment_to_addCreateFragment)
         }
+        deleteItem()
         retrieveDataFromDatabase()
 
         return binding.root
     }
+    private fun deleteItem(){
+        ItemTouchHelper(object :ItemTouchHelper.SimpleCallback(0,
+        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               val id = usersAdapter.getUserId(viewHolder.adapterPosition)
+
+                myReference.child(id).removeValue()
+            }
+
+        }).attachToRecyclerView(binding.recyclerView)
+    }
     private fun retrieveDataFromDatabase() {
         myReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
