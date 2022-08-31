@@ -24,18 +24,23 @@ import com.codefresher.allinone.databinding.FragmentAddCreateBinding
 import com.codefresher.allinone.databinding.FragmentCreateBinding
 import com.codefresher.allinone.model.Users
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import java.util.*
 
 
 class AddCreateFragment : Fragment() {
 
     private var _binding: FragmentAddCreateBinding? = null
     private val binding get() = _binding!!
-    private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val myReference: DatabaseReference = database.reference.child("MyUsers")
-    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    val myReference: DatabaseReference = database.reference.child("MyUsers")
+    lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     var imageUri: Uri? = null
 
+    val firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
+    val storageReference: StorageReference = firebaseStorage.reference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +58,7 @@ class AddCreateFragment : Fragment() {
         registerActivityForResult()
 
         binding.btnAddUser.setOnClickListener {
-            addUserToDatabase()
+            uploadPhoto()
         }
 
         binding.imgChose.setOnClickListener {
@@ -101,14 +106,14 @@ class AddCreateFragment : Fragment() {
     }
 
 
-    private fun addUserToDatabase() {
+    private fun addUserToDatabase(url: String) {
         val name: String = binding.edtName.text.toString()
         val age: String = binding.edtAge.text.toString()
         val email: String = binding.edtEmail.text.toString()
 
         val id: String = myReference.push().key.toString()
 
-        val user = Users(id, name, age, email)
+        val user = Users(id, name, age, email, url)
 
         myReference.child(id).setValue(user).addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -117,6 +122,8 @@ class AddCreateFragment : Fragment() {
                     "The new user has been added to the database",
                     Toast.LENGTH_LONG
                 ).show()
+                binding.btnAddUser.isClickable = true
+                binding.progressBar.visibility = View.INVISIBLE
                 findNavController().popBackStack()
 
             } else {
@@ -130,7 +137,38 @@ class AddCreateFragment : Fragment() {
         }
     }
 
+    fun uploadPhoto() {
+        binding.btnAddUser.isClickable = false
+        binding.progressBar.visibility = View.VISIBLE
 
+        //UUID
+
+        val imageName = UUID.randomUUID().toString()
+        val imageReference = storageReference.child("images").child(imageName)
+
+        imageUri?.let { uri ->
+
+            imageReference.putFile(uri).addOnSuccessListener {
+
+                    Toast.makeText(requireContext(),"Image uploaded", Toast.LENGTH_LONG).show()
+
+                //download url
+                 val myUploadedImageReference = storageReference.child("images").child(imageName)
+
+                myUploadedImageReference.downloadUrl.addOnSuccessListener { url ->
+
+                    val imageURL = url.toString()
+
+                    addUserToDatabase(imageURL)
+
+                }
+
+            }.addOnFailureListener {
+
+                Toast.makeText(requireContext(),it.localizedMessage, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
