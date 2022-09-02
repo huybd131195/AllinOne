@@ -13,4 +13,11 @@
     <string name="favorite">Favorite</string>
     <string name="create">Create</string>
     <string name="account">Account</string>
+    <string name="see_the_recipe">See the recipe</string>
+    <string name="healthy_weeknight_dinners">Healthy Weeknight Dinners</string>
+    <string name="what_we_re_loving_now">What We\'re Loving Now</string>
+    <string name="todo">TODO</string>
+    <string name="trending">Trending</string>
+    <string name="grillin_chillin">Grillin\' + Chillin\'</string>
+    <string name="drinks">Drinks</string>
 </resources>

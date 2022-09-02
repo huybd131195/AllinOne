@@ -6,16 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import com.codefresher.allinone.MainActivity
-import com.codefresher.allinone.R
-import com.codefresher.allinone.adapter.TrendingAdapter
+import com.codefresher.allinone.adapter.FoodAdapter
 import com.codefresher.allinone.databinding.FragmentHomeBinding
-import com.codefresher.allinone.model.Trending
+import com.codefresher.allinone.model.Food
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -31,18 +25,30 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        fetchData()
+        binding.lovingNow.setOnClickListener {
+            val url =
+                "https://www.foodnetwork.com/healthy/packages/healthy-every-week/healthy-mains/healthy-weeknight-dinners"
+            val intent =
+                Intent((activity as MainActivity), DetailActivity::class.java)
+            intent.putExtra("url", url)
+            (activity as MainActivity).startActivity(intent)
+        }
+
+        fetchDataTrending()
+        fetchDataChill()
+        drinksData()
         return binding.root
     }
 
-    private fun fetchData() {
-        var post = ArrayList<Trending>()
-        val postsAdapter = TrendingAdapter(requireContext(), post)
+    private fun fetchDataTrending() {
+        var post = ArrayList<Food>()
+        val postsAdapter = FoodAdapter(requireContext(), post)
+
         FirebaseFirestore.getInstance().collection("Trending")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    post = documents.toObjects(Trending::class.java) as ArrayList<Trending>
+                    post = documents.toObjects(Food::class.java) as ArrayList<Food>
 
 
                 }
@@ -55,10 +61,69 @@ class HomeFragment : Fragment() {
             }
 
         binding.trendRecyclerView.adapter = postsAdapter
-        postsAdapter.onclickItem = { trending ->
+        postsAdapter.onclickItem = {
             val intent =
                 Intent((activity as MainActivity), DetailActivity::class.java)
-            intent.putExtra("url",trending)
+            intent.putExtra("url", it)
+            (activity as MainActivity).startActivity(intent)
+        }
+
+    }
+
+    private fun fetchDataChill() {
+        var post = ArrayList<Food>()
+        val postsAdapter = FoodAdapter(requireContext(), post)
+
+        FirebaseFirestore.getInstance().collection("Grillin' + Chillin'")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    post = documents.toObjects(Food::class.java) as ArrayList<Food>
+
+
+                }
+                postsAdapter.addList(post)
+
+
+            }
+            .addOnFailureListener {
+
+            }
+
+        binding.chillRecyclerView.adapter = postsAdapter
+        postsAdapter.onclickItem = {
+            val intent =
+                Intent((activity as MainActivity), DetailActivity::class.java)
+            intent.putExtra("url", it)
+            (activity as MainActivity).startActivity(intent)
+        }
+
+    }
+    private fun drinksData() {
+        var post = ArrayList<Food>()
+        val postsAdapter = FoodAdapter(requireContext(), post)
+
+        FirebaseFirestore.getInstance().collection("Drink")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    post = documents.toObjects(Food::class.java) as ArrayList<Food>
+
+
+                }
+                postsAdapter.addList(post)
+
+
+            }
+            .addOnFailureListener {
+
+            }
+
+        binding.drinksRecyclerView.adapter = postsAdapter
+        postsAdapter.onclickItem = {
+            val intent =
+                Intent((activity as MainActivity), DetailActivity::class.java)
+            intent.putExtra("url", it)
             (activity as MainActivity).startActivity(intent)
         }
 

@@ -5,27 +5,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.codefresher.allinone.MainActivity
-import com.codefresher.allinone.databinding.TrendingItemBinding
-import com.codefresher.allinone.model.Trending
+import com.codefresher.allinone.databinding.FoodItemBinding
+import com.codefresher.allinone.model.Food
 
-class TrendingAdapter(
+class FoodAdapter(
     var context: Context,
-    private var trendingList: List<Trending>
+    private var foodList: List<Food>
 
-) : RecyclerView.Adapter<TrendingAdapter.TrendingViewHolder>() {
-    inner class TrendingViewHolder(val adapterBinding: TrendingItemBinding) :
+) : RecyclerView.Adapter<FoodAdapter.TrendingViewHolder>() {
+    inner class TrendingViewHolder(val adapterBinding: FoodItemBinding) :
         RecyclerView.ViewHolder(adapterBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingViewHolder {
-        val binding = TrendingItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = FoodItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TrendingViewHolder(binding)
     }
     var onclickItem: ((String) -> Unit)? = null
 
     override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
 
-        val post = trendingList[position]
+        val post = foodList[position]
         holder.adapterBinding.tvTrending.text = post.title
         Glide.with(context)
             .load(post.imageUrl)
@@ -38,10 +37,10 @@ class TrendingAdapter(
 
     }
 
-    override fun getItemCount(): Int = trendingList.size
+    override fun getItemCount(): Int = foodList.size
 
-    fun addList(array: List<Trending>){
-        trendingList=array
+    fun addList(array: List<Food>){
+        foodList=array
         notifyDataSetChanged()
     }
 }
