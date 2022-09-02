@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codefresher.allinone.R
 import com.codefresher.allinone.databinding.CreateItemBinding
 import com.codefresher.allinone.model.Users
@@ -46,14 +47,14 @@ class UsersAdapter(
         val imageUrl = userList[position].url
         Picasso.get().load(imageUrl).into(holder.adapterBinding.imgView, object : Callback{
             override fun onSuccess() {
-                Toast.makeText(context,"success",Toast.LENGTH_LONG).show()
             }
 
             override fun onError(e: Exception?) {
-                Toast.makeText(context,e?.localizedMessage,Toast.LENGTH_LONG).show()
             }
 
         })
+
+//        Glide.with(context).load(imageUrl).into(holder.adapterBinding.imgView)
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(userList[position])
             val tvN: TextView? = it.findViewById(R.id.tvName)

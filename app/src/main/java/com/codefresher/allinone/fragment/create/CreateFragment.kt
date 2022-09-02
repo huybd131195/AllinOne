@@ -14,6 +14,7 @@ import com.codefresher.allinone.adapter.UsersAdapter
 import com.codefresher.allinone.databinding.FragmentCreateBinding
 import com.codefresher.allinone.model.Users
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 
 class CreateFragment : Fragment() {
@@ -63,7 +64,7 @@ class CreateFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
                 for (eachUser in snapshot.children) {
-                    val user = eachUser.getValue(Users::class.java)
+                    val user = eachUser.getValue<Users>()
 
                     if (user != null) {
                         println("user Id: ${user.userId}")

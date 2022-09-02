@@ -59,8 +59,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="fitXY"
-                 />
+                android:scaleType="fitXY" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,22 +86,23 @@
 
         </androidx.cardview.widget.CardView>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--           />-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trendRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                   />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:orientation="vertical"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"-->
-<!--            app:spanCount="2"-->
-<!--         />-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"-->
+        <!--            app:spanCount="2"-->
+        <!--         />-->
       </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
