@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AllinOne</string>
+    <string name="app_name">Recipe</string>
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign up</string>
     <string name="email_or_username">"Email or User "</string>

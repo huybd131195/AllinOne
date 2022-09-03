@@ -275,6 +275,7 @@
 
 
                 <ImageButton
+                    android:id="@+id/btnFb"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_margin="10dp"
@@ -283,6 +284,7 @@
                     android:src="@drawable/facebook" />
 
                 <ImageButton
+                    android:id="@+id/btnGoogle"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_margin="10dp"
