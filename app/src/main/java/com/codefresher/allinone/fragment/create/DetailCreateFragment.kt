@@ -33,43 +33,11 @@ class DetailCreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getAndSetData()
 
-        binding.btnUpdate.setOnClickListener {
-            updateData()
-        }
 
     }
 
-    private fun getAndSetData() {
-        val name = arguments?.getString("name")
-        val age = arguments?.getString("age")
-        val email = arguments?.getString("email")
 
-        binding.edtName.setText(name)
-        binding.edtAge.setText(age)
-        binding.edtEmail.setText(email)
-    }
-
-    private fun updateData() {
-        val userId = arguments?.getString("id").toString()
-        val updateName = binding.edtName.text.toString()
-        val updateAge = binding.edtAge.text.toString()
-        val updateEmail = binding.edtEmail.text.toString()
-
-
-        val userMap = mutableMapOf<String, Any>()
-        userMap["userId"] = userId
-        userMap["userName"] = updateName
-        userMap["userAge"] = updateAge
-        userMap["userEmail"] = updateEmail
-
-        myReference.child(userId).updateChildren(userMap).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                findNavController().popBackStack()
-            }
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()

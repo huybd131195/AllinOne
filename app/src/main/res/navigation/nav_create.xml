@@ -22,10 +22,19 @@
         android:id="@+id/detailCreateFragment"
         android:name="com.codefresher.allinone.fragment.create.DetailCreateFragment"
         android:label="fragment_detail_create"
-        tools:layout="@layout/fragment_detail_create" />
+        tools:layout="@layout/fragment_detail_create" >
+        <action
+            android:id="@+id/action_detailCreateFragment_to_updateCreateFragment"
+            app:destination="@id/updateCreateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addCreateFragment"
         android:name="com.codefresher.allinone.fragment.create.AddCreateFragment"
         android:label="fragment_add_create"
         tools:layout="@layout/fragment_add_create" />
+    <fragment
+        android:id="@+id/updateCreateFragment"
+        android:name="com.codefresher.allinone.fragment.create.UpdateCreateFragment"
+        android:label="fragment_update_create"
+        tools:layout="@layout/fragment_update_create" />
 </navigation>

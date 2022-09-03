@@ -1,59 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.create.AddCreateFragment">
 
     <LinearLayout
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imgChose"
-            android:layout_marginTop="20dp"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:id="@+id/imgRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_account"/>
+
+            android:src="@drawable/ic_account" />
 
 
         <EditText
-            android:layout_margin="10dp"
-            android:id="@+id/edtName"
-            android:layout_width="300dp"
+            android:id="@+id/edtTitle"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:hint="Enter Name" />
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edt_border"
+            android:hint="Recipe names"
+            android:maxLines="1"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
 
         <EditText
-            android:inputType="phone"
-            android:layout_margin="10dp"
-            android:id="@+id/edtAge"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:hint="Enter Age" />
-
-        <EditText
-            android:layout_margin="10dp"
-            android:id="@+id/edtEmail"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:hint="Enter Email" />
-
-        <Button
-            android:layout_margin="10dp"
-            android:id="@+id/btnAddUser"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:text="Add User" />
-        
-        <ProgressBar
+            android:id="@+id/edtIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edt_border"
+            android:hint="Ingredients"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="50dp" />
+
+        <EditText
+            android:id="@+id/edtDirections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edt_border"
+            android:hint="Directions"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="100dp" />
+
+        <Button
+            android:id="@+id/btnAddRecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="Add Recipe"
+            android:textAllCaps="false" />
+
+        <ProgressBar
             android:id="@+id/progressBar"
-            android:visibility="invisible"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
     </LinearLayout>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

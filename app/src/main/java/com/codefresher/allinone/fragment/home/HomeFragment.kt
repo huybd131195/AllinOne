@@ -99,6 +99,7 @@ class HomeFragment : Fragment() {
         }
 
     }
+
     private fun drinksData() {
         var post = ArrayList<Food>()
         val postsAdapter = FoodAdapter(requireContext(), post)

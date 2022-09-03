@@ -1,20 +1,17 @@
 package com.codefresher.allinone.fragment.create
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
-
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.codefresher.allinone.R
-import com.codefresher.allinone.adapter.UsersAdapter
+import com.codefresher.allinone.adapter.RecipeAdapter
 import com.codefresher.allinone.databinding.FragmentCreateBinding
-import com.codefresher.allinone.model.Users
+import com.codefresher.allinone.model.Recipe
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.getValue
 
 
 class CreateFragment : Fragment() {
@@ -22,9 +19,10 @@ class CreateFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val myReference: DatabaseReference = database.reference.child("MyUsers")
-    private val userList = ArrayList<Users>()
-    lateinit var usersAdapter: UsersAdapter
+    private val myReference: DatabaseReference = database.reference.child("Recipes")
+    private val recipeList = ArrayList<Recipe>()
+    lateinit var recipeAdapter: RecipeAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,58 +33,35 @@ class CreateFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_createFragment_to_addCreateFragment)
         }
-        deleteItem()
-        retrieveDataFromDatabase()
-
+        retrieveData()
         return binding.root
     }
-    private fun deleteItem(){
-        ItemTouchHelper(object :ItemTouchHelper.SimpleCallback(0,
-        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                TODO("Not yet implemented")
-            }
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-               val id = usersAdapter.getUserId(viewHolder.adapterPosition)
-
-                myReference.child(id).removeValue()
-            }
-
-        }).attachToRecyclerView(binding.recyclerView)
-    }
-    private fun retrieveDataFromDatabase() {
-        myReference.addValueEventListener(object : ValueEventListener {
+    fun retrieveData(){
+        myReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                userList.clear()
-                for (eachUser in snapshot.children) {
-                    val user = eachUser.getValue<Users>()
+                for (eachUser in snapshot.children){
+                    recipeList.clear()
+                    val recipe = eachUser.getValue(Recipe::class.java)
 
-                    if (user != null) {
-                        println("user Id: ${user.userId}")
-                        println("userName: ${user.userName}")
-                        println("userAge: ${user.userAge}")
-                        println("userEmail: ${user.userEmail}")
-                        println("xxxxxxxxxxxxxxxxxxxxxxx")
-                        userList.add(user)
+                    if (recipe != null){
+
+                        recipeList.add(recipe)
                     }
-
-                    usersAdapter = UsersAdapter(requireContext(), userList)
-                    binding.recyclerView.adapter = usersAdapter
+                    recipeAdapter = RecipeAdapter(requireContext(), recipeList)
+                    binding.recyclerView.adapter = recipeAdapter
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                TODO("Not yet implemented")
             }
 
         })
 
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
