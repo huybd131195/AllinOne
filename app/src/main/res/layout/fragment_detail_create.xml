@@ -21,8 +21,8 @@
             android:src="@drawable/ic_account" />
 
 
-        <TextView
-            android:id="@+id/tvName"
+        <EditText
+            android:id="@+id/edtTitle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_margin="10dp"
@@ -33,8 +33,8 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp" />
 
-        <TextView
-            android:id="@+id/tvIngredients"
+        <EditText
+            android:id="@+id/edtIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -46,7 +46,7 @@
             android:paddingBottom="50dp" />
 
         <EditText
-            android:id="@+id/tvDirections"
+            android:id="@+id/edtDirections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

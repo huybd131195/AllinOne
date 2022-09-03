@@ -20,7 +20,7 @@ class DetailCreateFragment : Fragment() {
     private var _binding: FragmentDetailCreateBinding? = null
     private val binding get() = _binding!!
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val myReference: DatabaseReference = database.reference.child("MyUsers")
+    private val myReference: DatabaseReference = database.reference.child("Recipes")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,10 +33,44 @@ class DetailCreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getAndSetData()
 
+        binding.btnUpdateRecipe.setOnClickListener {
+            updateData()
+        }
 
     }
 
+    private fun getAndSetData() {
+        val title = arguments?.getString("title")
+        val ingredients = arguments?.getString("ingredients")
+        val directions = arguments?.getString("directions")
+
+        binding.edtTitle.setText(title)
+        binding.edtIngredients.setText(ingredients)
+        binding.edtDirections.setText(directions)
+    }
+
+    private fun updateData() {
+        val updateTitle = binding.edtTitle.text.toString()
+        val updateIngredients = binding.edtIngredients.text.toString()
+        val updateDirections = binding.edtDirections.text.toString()
+        val recipeId = arguments?.getString("id").toString()
+
+        val recipeMap = mutableMapOf<String, Any>()
+        recipeMap["recipeId"] = recipeId
+        recipeMap["recipeTitle"] = updateTitle
+        recipeMap["recipeIngredients"] = updateIngredients
+        recipeMap["recipeDirections"] = updateDirections
+
+        myReference.child(recipeId).updateChildren(recipeMap).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                findNavController().popBackStack()
+
+            }
+        }
+
+    }
 
 
     override fun onDestroy() {
