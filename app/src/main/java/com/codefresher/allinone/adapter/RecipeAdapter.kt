@@ -31,22 +31,29 @@ class RecipeAdapter(
         holder.adapterBinding.tvTitle.text = recipeList[position].title
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(recipeList[position])
-//            val tvTitle: TextView? = it.findViewById(R.id.tvTitle)
 
+//            val tvTitle: TextView? = it.findViewById(R.id.tvTitle)
+//
+//            val title = tvTitle?.text.toString()
             val title = recipeList[position].title
             val ingredients = recipeList[position].ingredients
             val directions = recipeList[position].directions
             val iD = recipeList[position].id
             val bundle = Bundle().apply {
-                putString("title",title)
-                putString("ingredients",ingredients)
-                putString("directions",directions)
-                putString("id",iD)
+                putString("title", title)
+                putString("ingredients", ingredients)
+                putString("directions", directions)
+                putString("id", iD)
             }
-            Navigation.findNavController(view = it).navigate(R.id.action_createFragment_to_detailCreateFragment,bundle)
+            Navigation.findNavController(view = it)
+                .navigate(R.id.action_createFragment_to_detailCreateFragment, bundle)
 
         }
     }
 
     override fun getItemCount(): Int = recipeList.size
+
+    fun getRecipeId(position: Int):String{
+        return recipeList[position].id
+    }
 }

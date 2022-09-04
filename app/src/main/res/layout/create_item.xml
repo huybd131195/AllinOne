@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@color/teal_200"
     android:elevation="@dimen/dps2"
     android:orientation="horizontal"
     app:cardCornerRadius="18dp">
@@ -56,4 +55,3 @@
 
 
 </androidx.cardview.widget.CardView>
-

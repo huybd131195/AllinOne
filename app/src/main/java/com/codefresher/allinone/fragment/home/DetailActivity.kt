@@ -12,6 +12,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = this.getColor(R.color.a3)
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
         intent.getStringExtra("url")?.let { detailBinding.webView.loadUrl(it) }

@@ -6,21 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.codefresher.allinone.R
 import com.codefresher.allinone.adapter.RecipeAdapter
 import com.codefresher.allinone.databinding.FragmentCreateBinding
 import com.codefresher.allinone.model.Recipe
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 
 class CreateFragment : Fragment() {
     private var _binding: FragmentCreateBinding? = null
     private val binding get() = _binding!!
 
-    private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val myReference: DatabaseReference = database.reference.child("Recipes")
-    private val recipeList = ArrayList<Recipe>()
+    val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    val myReference: DatabaseReference = database.reference.child("Recipes")
+    val recipeList = ArrayList<Recipe>()
     lateinit var recipeAdapter: RecipeAdapter
 
 
@@ -29,22 +32,23 @@ class CreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateBinding.inflate(inflater, container, false)
-
+        retrieveData()
+        deleteItem()
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_createFragment_to_addCreateFragment)
         }
-        retrieveData()
+
         return binding.root
     }
 
-    fun retrieveData(){
-        myReference.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (eachUser in snapshot.children){
-                    recipeList.clear()
-                    val recipe = eachUser.getValue(Recipe::class.java)
 
-                    if (recipe != null){
+    fun retrieveData() {
+        myReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                recipeList.clear()
+                for (eachUser in snapshot.children) {
+                    val recipe = eachUser.getValue<Recipe>()
+                    if (recipe != null) {
 
                         recipeList.add(recipe)
                     }
@@ -62,6 +66,27 @@ class CreateFragment : Fragment() {
     }
 
 
+    private fun deleteItem() {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val id = recipeAdapter.getRecipeId(viewHolder.adapterPosition)
+
+                myReference.child(id).removeValue()
+            }
+
+        }).attachToRecyclerView(binding.recyclerView)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
