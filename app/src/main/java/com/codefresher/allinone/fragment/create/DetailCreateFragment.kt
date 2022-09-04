@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,8 +52,11 @@ class DetailCreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         getAndSetData()
+
         registerActivityForResult()
+
         binding.btnUpdateRecipe.setOnClickListener {
             uploadPhoto()
         }
@@ -121,6 +125,9 @@ class DetailCreateFragment : Fragment() {
         myReference.child(recipeId).updateChildren(recipeMap).addOnCompleteListener { task ->
             if (task.isSuccessful) {
 
+                binding.btnUpdateRecipe.isClickable = true
+                binding.progressBar.visibility = View.INVISIBLE
+
                 findNavController().popBackStack()
 
             }
@@ -131,7 +138,7 @@ class DetailCreateFragment : Fragment() {
 
     fun uploadPhoto() {
         binding.btnUpdateRecipe.isClickable = false
-
+        binding.progressBar.visibility = View.VISIBLE
         //UUID
 
         val imageName = arguments?.getString("imgName").toString()
@@ -165,4 +172,5 @@ class DetailCreateFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }

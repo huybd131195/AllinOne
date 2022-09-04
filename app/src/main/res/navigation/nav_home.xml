@@ -9,18 +9,5 @@
         android:id="@+id/homeFragment"
         android:name="com.codefresher.allinone.fragment.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            app:enterAnim="@anim/enter_anim"
-            app:popEnterAnim="@anim/pop_enter_anim"
-            app:exitAnim="@anim/exit_anim"
-            app:popExitAnim="@anim/pop_exit_anim"
-            android:id="@+id/action_homeFragment_to_detailHomeFragment"
-            app:destination="@id/detailHomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailHomeFragment"
-        android:name="com.codefresher.allinone.fragment.DetailHomeFragment"
-        android:label="fragment_detail_home"
-        tools:layout="@layout/fragment_detail_home" />
+        tools:layout="@layout/fragment_home" />
 </navigation>

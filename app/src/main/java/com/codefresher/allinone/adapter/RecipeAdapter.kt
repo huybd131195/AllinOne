@@ -65,6 +65,10 @@ class RecipeAdapter(
                 .navigate(R.id.action_createFragment_to_detailCreateFragment, bundle)
 
         }
+
+        holder.adapterBinding.btnFavorite.setOnClickListener {
+            onItemClick?.invoke(recipeList[position])
+        }
     }
 
     override fun getItemCount(): Int = recipeList.size

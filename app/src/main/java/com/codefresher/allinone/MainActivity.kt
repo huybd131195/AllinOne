@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // costomise start selected item
         bottomNavigationView.selectedItemId = R.id.nav_home
 
-        val navGraphIds = listOf(R.navigation.nav_home, R.navigation.nav_favorite, R.navigation.nav_create,
+        val navGraphIds = listOf(R.navigation.nav_home, R.navigation.nav_create,
         R.navigation.nav_account)
 
         // setup the bottom navigation view with a list of navigation graphs

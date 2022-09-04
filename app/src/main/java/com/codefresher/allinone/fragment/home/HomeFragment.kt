@@ -37,7 +37,37 @@ class HomeFragment : Fragment() {
         fetchDataTrending()
         fetchDataChill()
         drinksData()
+        recommenData()
         return binding.root
+    }
+
+    private fun recommenData() {
+        var post = ArrayList<Food>()
+        val postsAdapter = FoodAdapter(requireContext(), post)
+
+        FirebaseFirestore.getInstance().collection("Recommend")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    post = documents.toObjects(Food::class.java) as ArrayList<Food>
+
+
+                }
+                postsAdapter.addList(post)
+
+
+            }
+            .addOnFailureListener {
+
+            }
+
+        binding.recommendRecyclerView.adapter = postsAdapter
+        postsAdapter.onclickItem = {
+            val intent =
+                Intent((activity as MainActivity), DetailActivity::class.java)
+            intent.putExtra("url", it)
+            (activity as MainActivity).startActivity(intent)
+        }
     }
 
     private fun fetchDataTrending() {

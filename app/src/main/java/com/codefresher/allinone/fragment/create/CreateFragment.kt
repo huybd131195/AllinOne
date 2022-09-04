@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -42,6 +43,8 @@ class CreateFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_createFragment_to_addCreateFragment)
         }
+
+
 
         return binding.root
     }
@@ -90,11 +93,13 @@ class CreateFragment : Fragment() {
                 val imageName = recipeAdapter.getImageName(viewHolder.adapterPosition)
                 val imageReference = storageReference.child("images").child(imageName)
                 imageReference.delete()
-
+                Toast.makeText(context,"The recipe was deleted", Toast.LENGTH_SHORT).show()
             }
 
         }).attachToRecyclerView(binding.recyclerView)
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
