@@ -29,9 +29,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/edt_border"
             android:maxLines="1"
-            android:paddingStart="20dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
+            android:paddingStart="@dimen/dps20"
+            android:paddingTop="@dimen/dps10"
+            android:paddingEnd="@dimen/dps10"
             android:autofillHints=""
             android:inputType="text" />
 
@@ -51,13 +51,13 @@
             android:id="@+id/edtDirections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="@dimen/dps10"
+            android:layout_marginTop="@dimen/dps10"
             android:background="@drawable/edt_border"
-            android:paddingStart="20dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="100dp" />
+            android:paddingStart="@dimen/dps20"
+            android:paddingTop="@dimen/dps20"
+            android:paddingEnd="@dimen/dps20"
+            android:paddingBottom="@dimen/dps100" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_marginTop="@dimen/dps10"
