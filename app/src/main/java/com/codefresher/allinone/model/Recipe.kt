@@ -5,6 +5,7 @@ data class Recipe(
     val title: String = "",
     val ingredients: String = "",
     val directions: String = "",
-    val url: String = ""
+    val url: String = "",
+    val imgName: String = ""
 ) {
 }

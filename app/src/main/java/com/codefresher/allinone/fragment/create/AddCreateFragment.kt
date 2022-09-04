@@ -65,14 +65,14 @@ class AddCreateFragment : Fragment() {
 
     }
 
-    fun addRecipeToDatabase(url: String) {
+    fun addRecipeToDatabase(url: String,imgName : String) {
         val title: String = binding.edtTitle.text.toString()
         val ingredients: String = binding.edtIngredients.text.toString()
         val directions: String = binding.edtDirections.text.toString()
 
         val id = myReference.push().key.toString()
 
-        val recipe = Recipe(id, title, ingredients, directions,url)
+        val recipe = Recipe(id, title, ingredients, directions,url,imgName)
 
         myReference.child(id).setValue(recipe).addOnCompleteListener { task ->
 
@@ -153,7 +153,7 @@ class AddCreateFragment : Fragment() {
 
                     val imageURL = url.toString()
 
-                    addRecipeToDatabase(imageURL)
+                    addRecipeToDatabase(imageURL,imageName)
 
                 }
 

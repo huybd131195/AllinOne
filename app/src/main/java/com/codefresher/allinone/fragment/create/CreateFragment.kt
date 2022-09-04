@@ -15,6 +15,8 @@ import com.codefresher.allinone.databinding.FragmentCreateBinding
 import com.codefresher.allinone.model.Recipe
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class CreateFragment : Fragment() {
@@ -25,6 +27,9 @@ class CreateFragment : Fragment() {
     val myReference: DatabaseReference = database.reference.child("Recipes")
     val recipeList = ArrayList<Recipe>()
     lateinit var recipeAdapter: RecipeAdapter
+
+    val firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
+    val storageReference: StorageReference = firebaseStorage.reference
 
 
     override fun onCreateView(
@@ -81,8 +86,11 @@ class CreateFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val id = recipeAdapter.getRecipeId(viewHolder.adapterPosition)
-
                 myReference.child(id).removeValue()
+                val imageName = recipeAdapter.getImageName(viewHolder.adapterPosition)
+                val imageReference = storageReference.child("images").child(imageName)
+                imageReference.delete()
+
             }
 
         }).attachToRecyclerView(binding.recyclerView)

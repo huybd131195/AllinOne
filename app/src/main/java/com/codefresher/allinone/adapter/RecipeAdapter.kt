@@ -57,6 +57,8 @@ class RecipeAdapter(
                 putString("title", title)
                 putString("ingredients", ingredients)
                 putString("directions", directions)
+                putString("url",imageUrl)
+                putString("imgName",recipeList[position].imgName)
                 putString("id", iD)
             }
             Navigation.findNavController(view = it)
@@ -69,5 +71,11 @@ class RecipeAdapter(
 
     fun getRecipeId(position: Int):String{
         return recipeList[position].id
+    }
+
+    fun getImageName(position: Int) : String{
+
+        return recipeList[position].imgName
+
     }
 }
