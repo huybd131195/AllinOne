@@ -64,8 +64,6 @@ class DetailCreateFragment : Fragment() {
         myReference.child(recipeId).updateChildren(recipeMap).addOnCompleteListener { task ->
             if (task.isSuccessful) {
 
-                Toast.makeText(requireContext(),"asdasd",Toast.LENGTH_SHORT).show()
-
                 findNavController().popBackStack()
 
             }

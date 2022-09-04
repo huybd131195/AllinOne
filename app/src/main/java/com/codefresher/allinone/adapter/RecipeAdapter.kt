@@ -3,13 +3,18 @@ package com.codefresher.allinone.adapter
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.codefresher.allinone.R
 import com.codefresher.allinone.databinding.CreateItemBinding
 import com.codefresher.allinone.model.Recipe
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 class RecipeAdapter(
     var context: Context,
@@ -29,12 +34,21 @@ class RecipeAdapter(
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.adapterBinding.tvTitle.text = recipeList[position].title
+
+        val imageUrl  = recipeList[position].url
+        Picasso.get().load(imageUrl).into(holder.adapterBinding.imgItem,object : Callback{
+            override fun onSuccess() {
+                holder.adapterBinding.progressBar.visibility = View.INVISIBLE
+            }
+
+            override fun onError(e: Exception?) {
+                Toast.makeText(context,e?.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
+
+        })
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(recipeList[position])
 
-//            val tvTitle: TextView? = it.findViewById(R.id.tvTitle)
-//
-//            val title = tvTitle?.text.toString()
             val title = recipeList[position].title
             val ingredients = recipeList[position].ingredients
             val directions = recipeList[position].directions
