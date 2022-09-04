@@ -9,14 +9,5 @@
         android:id="@+id/favoriteFragment"
         android:name="com.codefresher.allinone.fragment.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
-        <action
-            android:id="@+id/action_favoriteFragment_to_detailFavoriteFragment"
-            app:destination="@id/detailFavoriteFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailFavoriteFragment"
-        android:name="com.codefresher.allinone.fragment.favorite.DetailFavoriteFragment"
-        android:label="fragment_detail_favorite"
-        tools:layout="@layout/fragment_detail_favorite" />
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

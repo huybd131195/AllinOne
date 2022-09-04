@@ -82,6 +82,7 @@ class LogInActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("email", account.email)
                 intent.putExtra("name", account.displayName)
+                intent.putExtra("avatar", account.photoUrl)
                 startActivity(intent)
                 finish()
             } else {
