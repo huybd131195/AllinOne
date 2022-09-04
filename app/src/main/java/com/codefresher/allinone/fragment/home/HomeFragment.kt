@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.codefresher.allinone.MainActivity
+import com.codefresher.allinone.R
 import com.codefresher.allinone.adapter.FoodAdapter
 import com.codefresher.allinone.databinding.FragmentHomeBinding
 import com.codefresher.allinone.model.Food
@@ -34,14 +36,18 @@ class HomeFragment : Fragment() {
             (activity as MainActivity).startActivity(intent)
         }
 
+        binding.searchView.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
+
         fetchDataTrending()
         fetchDataChill()
         drinksData()
-        recommenData()
+        recommendData()
         return binding.root
     }
 
-    private fun recommenData() {
+    private fun recommendData() {
         var post = ArrayList<Food>()
         val postsAdapter = FoodAdapter(requireContext(), post)
 

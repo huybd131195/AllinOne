@@ -15,10 +15,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/background_search_view"
-        android:paddingStart="10dp"
-        android:paddingEnd="30dp"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search for recipes" />
+        app:defaultQueryHint="@string/search_here"
+        app:iconifiedByDefault="false" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -155,11 +153,11 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginBottom="10dp"
                 android:id="@+id/recommendRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="2" />
 

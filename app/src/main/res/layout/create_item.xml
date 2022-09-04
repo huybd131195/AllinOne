@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/cardView"
+            app:layout_constraintEnd_toEndOf="@id/cardView"
+            app:layout_constraintStart_toStartOf="@id/cardView"
+            app:layout_constraintTop_toTopOf="@id/cardView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -22,23 +31,25 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/imgItem"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_account" />
+                android:scaleType="fitXY" />
 
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvTitle"
-            android:textColor="@color/black"
-            android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:ellipsize="end"
             android:maxLines="3"
+            android:paddingStart="@dimen/dps10"
+            android:paddingTop="@dimen/dps10"
+            android:paddingEnd="@dimen/dps10"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/btnFavorite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cardView"
@@ -50,18 +61,10 @@
             android:layout_height="40dp"
             android:background="@color/white"
             android:src="@drawable/ic_remove_favorite"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/cardView"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            app:layout_constraintTop_toTopOf="@id/cardView"
-            app:layout_constraintBottom_toBottomOf="@id/cardView"
-            app:layout_constraintStart_toStartOf="@id/cardView"
-            app:layout_constraintEnd_toEndOf="@id/cardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -26,4 +26,11 @@
     <string name="current_password">Current Password</string>
     <string name="change_password">Change Password</string>
     <string name="sign_out">Sign Out</string>
+    <string name="add_recipe">Add Recipe</string>
+    <string name="directions">Directions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="recipe_names">Recipe names</string>
+    <string name="search_here">Search here</string>
+    <string name="update_recipe">Update Recipe</string>
+    <string name="recipe_image">Recipe Image</string>
 </resources>

@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-
-            android:src="@drawable/ic_account" />
+            android:src="@drawable/ic_account"
+            android:contentDescription="@string/recipe_image" />
 
 
         <EditText
@@ -31,7 +31,9 @@
             android:maxLines="1"
             android:paddingStart="20dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20dp" />
+            android:paddingEnd="20dp"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/edtIngredients"
@@ -57,17 +59,19 @@
             android:paddingEnd="20dp"
             android:paddingBottom="100dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="@dimen/dps10"
+            android:textColor="@color/white"
             android:id="@+id/btnUpdateRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/teal_200"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/dps20"
+            android:background="@drawable/border_btn"
+            android:paddingEnd="@dimen/dps20"
             android:layout_marginBottom="10dp"
-            android:text="Update Recipe"
-            android:textAllCaps="false" />
+            android:text="@string/update_recipe"/>
+
 
         <ProgressBar
             android:id="@+id/progress_bar"

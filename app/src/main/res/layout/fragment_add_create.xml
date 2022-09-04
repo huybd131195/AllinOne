@@ -15,8 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-
-            android:src="@drawable/ic_account" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_account"
+            android:contentDescription="@string/avatar" />
 
 
         <EditText
@@ -26,44 +27,54 @@
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edt_border"
-            android:hint="Recipe names"
+            android:hint="@string/recipe_names"
             android:maxLines="1"
             android:paddingStart="20dp"
-            android:paddingEnd="20dp" />
+            android:paddingEnd="20dp"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <EditText
+            android:autofillHints=""
+            android:inputType="text"
             android:id="@+id/edtIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edt_border"
-            android:hint="Ingredients"
+            android:hint="@string/ingredients"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:paddingEnd="20dp"
             android:paddingBottom="50dp" />
 
         <EditText
+            android:autofillHints=""
+            android:inputType="text"
             android:id="@+id/edtDirections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edt_border"
-            android:hint="Directions"
+            android:hint="@string/directions"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:paddingEnd="20dp"
             android:paddingBottom="100dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:textColor="@color/white"
+            android:paddingStart="@dimen/dps20"
+            android:paddingEnd="@dimen/dps20"
+            android:background="@drawable/border_btn"
             android:id="@+id/btnAddRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="Add Recipe"
+            android:text="@string/add_recipe"
             android:textAllCaps="false" />
 
         <ProgressBar

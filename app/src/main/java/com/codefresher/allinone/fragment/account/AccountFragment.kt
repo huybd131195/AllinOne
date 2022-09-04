@@ -40,7 +40,7 @@ class AccountFragment : Fragment() {
 
         binding.btnSignOut.setOnClickListener {
             auth.signOut()
-            var intent: Intent = Intent(activity, LogInActivity::class.java)
+            val intent: Intent = Intent(activity, LogInActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }
